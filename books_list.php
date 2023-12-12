@@ -2,8 +2,10 @@
 <?php
 require 'mysql/config.php';
 require 'books_config.php';
+
+$endate = (isset($_GET['endate'])) ? $_GET['endate']  :date("Y-m-d", strtotime("+1 day"));
+
 $stdate = (isset($_GET['stdate'])) ? $_GET['stdate'] : date("Y-m-d");
-$endate = (isset($_GET['endate'])) ? $_GET['endate'] : date("Y-m-d");
 if (isset($_GET['rmid'])) {
     $rmid = $_GET['rmid'];
     $bkin = $_GET['bkin'];
@@ -53,12 +55,16 @@ if (isset($_GET['rmid'])) {
                     $days = (int) date_diff(date_create($row['bkin']), date_create($row['bkout']))->format('%R%a');
                     $sumprice=$days*(int)$row['rmprice'];
                     ?>
+                    <!-- อัปเดทสถานะการจอง -->
                     <tr>
                         <td>
                             <?php if($row['bkstatus']==1){?>
                             <a href="javascript:bookstatus('<?php echo $row['rmid']; ?>','<?php echo $row['bkin']; ?>','0')">
                                 ยกเลิก
                             </a>
+                            <a href="javascript:bookstatus('<?php echo $row['rmid']; ?>','<?php echo $row['bkin']; ?>','1')">
+                               
+                          
                             <a href="javascript:bookstatus('<?php echo $row['rmid']; ?>','<?php echo $row['bkin']; ?>','2')">
                                 เข้าพัก
                             </a>
