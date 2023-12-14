@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sogo Hotel by Colorlib.com</title>
+    <title>GRAND SIAM INN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -21,11 +21,68 @@
     <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
 
-    <!-- Theme Style -->
+  
+    <!-- JS Bootstrap, Popper.js, และ jQuery -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- Theme Style --> 
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
+  <?php
+
+    require 'mysql/config.php';
+    $bkin = (isset($_GET['bkin'])) ? $_GET['bkin'] : date("j-F-Y");
+    $bkout = (isset($_GET['bkout'])) ? $_GET['bkout'] : date("j-F-Y",strtotime("+1 day"));
+    $bkcust = (isset($_GET['bkcust'])) ? $_GET['bkcust'] : "";
+    $bktel = (isset($_GET['bktel'])) ? $_GET['bktel'] : "";
+    $type_room1 = (int) (isset($_GET['type_room1'])) ? $_GET['type_room1'] : 1;
+    $type_room2 = (int) (isset($_GET['type_room2'])) ? $_GET['type_room2'] : 2;
+    $type_room3 = (int) (isset($_GET['type_room3'])) ? $_GET['type_room3'] : 3;
+    $type_room4 = (int) (isset($_GET['type_room4'])) ? $_GET['type_room4'] : 4;
+    $days = (int) date_diff(date_create($bkin), date_create($bkout))->format('%R%a');
+
+    if ($days < 1) {
+       //ถ้าเลือกวันที่เช็คเอาท์น้อยกว่า 1 วันกลับไปหน้าแรก !!index
+        echo "<script>window.location.replace('index.php');</script>";
+        exit();
+    }
+
+    if (isset($_GET['rmid'])) {
+        $rmid = $_GET['rmid'];
+        $bkstatus = 0;
+        require 'books_status.php';
+    }
+     
+    // เงื่อนไขแสดงประเภทห้องพัก  ถ้าตัวแปร $type_room1 == 1    
+    // ประกาศตัวแปร $num_room1 ในเงื่อนไข และให้เก็บค่า ของ Sql ไว้  $num_room1 = " AND roomtype.rmtype='$type_room1'";
+    if ($type_room1 == 1) {
+        $num_room1 = " AND roomtype.rmtype='$type_room1'";}
+      else {$num_room1 = "";}
+
+    if ($type_room2 == 2) {
+          $num_room2 = " AND roomtype.rmtype='$type_room2'";}
+      else {$num_room2 = "";}
+
+    if ($type_room3 == 3) {
+          $num_room3 = " AND roomtype.rmtype='$type_room3'";}
+      else {$num_room3 = "";}
+
+      if ($type_room4 == 1) {
+        $num_room4 = " AND roomtype.rmtype='$type_room4'";}
+        else {$num_room4 = "";}
+
+    /* เก็บเงื่อนไขนี้ไว้ประยุกต์หน้า admin
+    if ($q > 0) {
+        $kw = " AND roomtype.rmtype='$q'";
+    } else {
+        $kw = "";
+    }
+    */
+
+    ?>
     
+    <!-- start heade  -->
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
@@ -40,6 +97,7 @@
             </div>
             <!-- END menu-toggle -->
 
+            <!-- เมนู-->
             <div class="site-navbar js-site-navbar">
               <nav role="navigation">
                 <div class="container">
@@ -86,26 +144,33 @@
     </section>
     <!-- END section -->
 
+    <?php 
+    //แปลงรูปแบบวันที่
+    $Date_bkin = date("j F, Y", strtotime($bkin));
+    $Date_bkout = date("j F, Y", strtotime($bkout));
+    ?>
+
     <section class="section pb-4">
       <div class="container">
        
         <div class="row check-availabilty" id="next">
           <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
 
-            <form action="#">
+            <form action="rooms.php" method="GET">
               <div class="row">
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="text" id="checkin_date" class="form-control">
+                    <input type="text" id="checkin_date" class="form-control" name="bkin" 
+                      value="<?php echo $Date_bkin; ?>" required>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="text" id="checkout_date" class="form-control">
+                    <input type="text" id="checkout_date" class="form-control" name="bkout" value="<?php echo $Date_bkout; ?>" required>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
@@ -137,7 +202,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 align-self-end">
-                  <button class="btn btn-primary btn-block text-white">Check Availabilty</button>
+                  <button type="submit" class="btn btn-primary btn-block text-white">Check Availabilty</button>
                 </div>
               </div>
             </form>
@@ -147,8 +212,117 @@
         </div>
       </div>
     </section>
+    <!-- Modal 1 -->
+    <div class="container">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Booknow</button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+          <div class="modal-content" style="border-radius: 10px;">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Booking Room</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             
+            </div>
+            
+            <div class="modal-body">
+              
+              <?php 
+              //แปลงรูปแบบวันที่ให้ตรงกับฐานข้อมูล 
+              $formattedDatebkin = date("Y-m-d", strtotime($bkin));
+              $formattedDatebkout = date("Y-m-d", strtotime($bkout));
+              ?>
 
-    
+              <?php 
+              //แปลงรูปแบบวันที่ภาษาไทย
+              $THDatebkin = date("Y-m-d", strtotime($bkin));
+              $THDatebkout = date("Y-m-d", strtotime($bkout));
+              ?>
+              
+              <!-- form -->
+              <form action="books_insert.php" method="POST"> 
+                <!-- ซ่อนช่องกรอกข้อมูลไว้ ส่งค่าไปยัง ฟอร์อม books_insert.php-->
+                <label class="col-form-label">เข้าพักวันที่</label>
+                <label  class="col-form-label"><?php echo $bkin;?></label>
+                <label  class="col-form-label">ออกวันที่</label>
+                <label  class="col-form-label"><?php echo $bkout;?></label>
+                <input type="hidden"   name="bkin" 
+                value="<?php echo $formattedDatebkin;?>">
+                <input type="hidden"  name="bkout" 
+                value="<?php echo  $formattedDatebkout; ?>">
+                <!-- ซ่อนช่องกรอกข้อมูลไว้-->
+
+                <div class="row justify-content-center" >
+                <div class="mb-2 p-2">
+                  <label for="recipient-name" class="col-form-label">FristName:</label>
+                  <!-- bkcust : ชื่อผู้พัก name="bkcust" -->
+                  <input type="text" class="form-control" id="recipient-name" name="bkcust" value="<?php echo $bkcust; ?>" required >
+                  </div>
+                <div class="mb-2 p-2">
+                <label for="recipient-name" class="col-form-label">LastNane:</label>
+                <input type="text" class="form-control" id="recipient-name" >
+                </div>
+                </div>
+                <!-- อย่าลืมเปลี่ยนข้อมูล -->
+                <div class="row justify-content-center" >
+                <div class="mb-2 p-2">
+                  <!-- Phone : เบอร์  name="bktel" -->
+                  <label for="recipient-name" class="col-form-label">Phone:</label>
+                  <input type="text" class="form-control" id="recipient-name"  name="bktel" value="<?php echo $bktel; ?>" required >
+                  </div>
+                <div class="mb-2 p-2">
+                <label for="recipient-name" class="col-form-label">Rooms:</label>
+                <select class="form-control"  name="rmid" required>
+                <option selected value="<?php echo $row['rmid']; ?>">เลือกห้อง</option>
+                <?php
+                
+                /* ต้นแบบแสดงทุกห้อง
+                 $sql = "SELECT * FROM rooms LEFT JOIN roomtype ON rooms.rmtype = roomtype.rmtype "
+                 . "WHERE rmid NOT IN (SELECT rmid FROM books WHERE bkstatus > 0 "
+                 . "AND ((bkin >= '$bkin' AND bkin < '$bkout') OR (bkin < '$bkin' AND bkout > '$bkin')))"
+                 . $kw;
+                $result = $conn->query($sql); */
+                
+                // SQL ชุดนี้แสดงเฉพาะ ห้องเดี่ยว และส่งค่าห้องเดี่ยวไปบันทึกข้อมูลลง DB
+                $sql = "SELECT * FROM rooms LEFT JOIN roomtype ON rooms.rmtype = roomtype.rmtype "
+                        . "WHERE rmid NOT IN (SELECT rmid FROM books WHERE bkstatus > 0 "
+                        . "AND ((bkin >= '$formattedDatebkin' AND bkin < '$formattedDatebkout') OR (bkin < '$formattedDatebkin' AND bkout > '$formattedDatebkin'))) "
+                        . $num_room1;
+                $result = $conn->query($sql);
+                $num = 1;
+                $roomprice =0;
+                while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                  $roomprice ++
+                    ?>
+                      <option value="<?php echo $row['rmid']; ?>">
+                        <?php echo $num++; ?>&nbsp;
+                        <?php echo $row['rmid']; ?>&nbsp;
+                        <?php echo $row['tpname']; ?>&nbsp;
+                        <?php echo number_format($row['rmprice']*$roomprice,0);?>
+                      </option>
+                <?php } ?>
+              </select><br />
+                </div>
+                </div>
+
+                <div class="mb-3 p-1">
+                  <label for="message-text" class="col-form-label">Message:</label>
+                  <textarea class="form-control" id="message-text"></textarea>
+                </div>
+             
+            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Send message</button>
+            </div>  
+            <!-- EnD -->
+            </div>
+           </form>
+          </div>
+        </div>
+      </div>
+    </div>  
+    <!-- End Modal 1 --> 
+
     <section class="section">
       <div class="container">
         
@@ -312,7 +486,7 @@
         <div class="row pt-5">
           <p class="col-md-6 text-left">
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> Grand Siam Inn . <i class="icon-heart-o" aria-hidden="true"></i> By <a href="https://colorlib.com" target="_blank" >S-ONE</a>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
           </p>
             
@@ -334,15 +508,12 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.stellar.min.js"></script>
     <script src="js/jquery.fancybox.min.js"></script>
-    
-    
     <script src="js/aos.js"></script>
-    
     <script src="js/bootstrap-datepicker.js"></script> 
     <script src="js/jquery.timepicker.min.js"></script> 
-
-    
-
     <script src="js/main.js"></script>
+    <script>
+            document.getElementById('type_room1').value = "<?php echo $type_room1; ?>";
+        </script>
   </body>
 </html>

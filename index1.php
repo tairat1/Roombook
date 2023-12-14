@@ -25,7 +25,17 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    
+
+  <!-- ประกาศตัวแปรเพื่อรับค่าวันที่เช็คอินเช็คเอาท์ และค้นค้นหาจำนวนห้องที่ว่างจากช่วงเวลา -->
+  <?php $Nowdate=date('j F, Y');
+  // +1 Day เพราะวันที่เช็คเอาท์ต้องมากกว่าวันที่เช็คอิน ส่วนจะทำเป็นห้องรายชั่วโมงนั้นสามารถต่อยอดได้
+   $Nextdate = date("j F, Y", strtotime("+1 day"));
+  ?>
+
+
+   <!-- END -->
+
+   <!-- Start head -->
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
@@ -85,26 +95,27 @@
     </section>
     <!-- END section -->
 
+    <!-- ฟอร์มส่งค่าวันที่เช็คอินเช็คเอาท์เพื่อหาห้องว่าง ไปยังเพจ rooms.php-->
     <section class="section bg-light pb-0"  >
       <div class="container">
        
         <div class="row check-availabilty" id="next">
           <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
-
-            <form action="#">
+            <!-- Start form -->
+            <form action="rooms.php" method="GET">
               <div class="row">
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="text" id="checkin_date" class="form-control">
+                    <input type="text" id="checkin_date" class="form-control" name="bkin" value="<?php echo $Nowdate; ?>" required>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="text" id="checkout_date" class="form-control">
+                    <input type="text" id="checkout_date" class="form-control" name="bkout" value="<?php echo  $Nextdate; ?>" required>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
@@ -140,6 +151,7 @@
                 </div>
               </div>
             </form>
+            <!-- End-->
           </div>
 
 

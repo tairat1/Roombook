@@ -34,7 +34,7 @@ if(isset($_POST['rmid'])){
     <body>
         <script>
             var v1=<?php echo $v1;?>;
-            var vurl="books_form.php?bkin=<?php echo $bkin;?>";
+            var vurl="rooms.php?bkin=<?php echo $bkin;?>";
             vurl+="&bkout=<?php echo $bkout;?>";
             vurl+="&bkcust=<?php echo $bkcust;?>";
             vurl+="&bktel=<?php echo $bktel;?>";

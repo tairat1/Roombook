@@ -51,6 +51,7 @@ if ($q > 0) {
             </select>
             <button type="submit">ค้นหา</button>
         </form>
+        <?php // แสดงห้องที่ว่าง?>
         <form action="books_insert.php" method="POST">
             <input type="hidden" name="bkin" value="<?php echo $bkin; ?>" />
             <input type="hidden" name="bkout" value="<?php echo $bkout; ?>" />
