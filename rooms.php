@@ -146,8 +146,8 @@
 
     <?php 
     //แปลงรูปแบบวันที่
-    $Date_bkin = date("j F, Y", strtotime($bkin));
-    $Date_bkout = date("j F, Y", strtotime($bkout));
+    $Date_bkin = date("j F Y", strtotime($bkin));
+    $Date_bkout = date("j F Y", strtotime($bkout));
     ?>
 
     <section class="section pb-4">
@@ -155,17 +155,18 @@
        
         <div class="row check-availabilty" id="next">
           <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
-
             <form action="rooms.php" method="GET">
               <div class="row">
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="text" id="checkin_date" class="form-control" name="bkin" 
+                    <input  date  id="checkin_date" class="form-control" name="bkin" 
                       value="<?php echo $Date_bkin; ?>" required>
+                      <div id="dateError" style="color: red;"></div>
                   </div>
                 </div>
+          
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
                   <div class="field-icon-wrap">
@@ -327,18 +328,55 @@
       <div class="container">
         
         <div class="row">
-          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+          <div class="col-md-6 col-lg-6 mb-5" data-aos="fade-up">
             <a href="#" class="room">
               <figure class="img-wrap">
                 <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>
               <div class="p-3 text-center room-info">
-                <h2>Single Room</h2>
-                <span class="text-uppercase letter-spacing-1">90$ / per night</span>
+                <h2>Standard Room</h2>
+                <span class="text-uppercase letter-spacing-1">600฿ / per night</span>
               </div>
             </a>
           </div>
 
+          <div class="col-md-6 col-lg-6 mb-5" data-aos="fade-up">
+            <a href="#" class="room">
+              <figure class="img-wrap">
+                <img src="images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
+              </figure>
+              <div class="p-3 text-center room-info">
+                <h2>Superior Room</h2>
+                <span class="text-uppercase letter-spacing-1">800฿ / per night</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-md-6 col-lg-6 mb-5" data-aos="fade-up">
+            <a href="#" class="room">
+              <figure class="img-wrap">
+                <img src="images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
+              </figure>
+              <div class="p-3 text-center room-info">
+                <h2>Delux Room</h2>
+                <span class="text-uppercase letter-spacing-1">800฿ / per night</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-md-6 col-lg-6 mb-5" data-aos="fade-up">
+            <a href="#" class="room">
+              <figure class="img-wrap">
+                <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
+              </figure>
+              <div class="p-3 text-center room-info">
+                <h2>Family Room</h2>
+                <span class="text-uppercase letter-spacing-1">1900฿ / per night</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- start
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
             <a href="#" class="room">
               <figure class="img-wrap">
@@ -350,7 +388,9 @@
               </div>
             </a>
           </div>
+          End -->
 
+          <!-- start
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
             <a href="#" class="room">
               <figure class="img-wrap">
@@ -362,42 +402,7 @@
               </div>
             </a>
           </div>
-
-          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-            <a href="#" class="room">
-              <figure class="img-wrap">
-                <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
-              </figure>
-              <div class="p-3 text-center room-info">
-                <h2>Single Room</h2>
-                <span class="text-uppercase letter-spacing-1">90$ / per night</span>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-            <a href="#" class="room">
-              <figure class="img-wrap">
-                <img src="images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
-              </figure>
-              <div class="p-3 text-center room-info">
-                <h2>Family Room</h2>
-                <span class="text-uppercase letter-spacing-1">120$ / per night</span>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-            <a href="#" class="room">
-              <figure class="img-wrap">
-                <img src="images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
-              </figure>
-              <div class="p-3 text-center room-info">
-                <h2>Presidential Room</h2>
-                <span class="text-uppercase letter-spacing-1">250$ / per night</span>
-              </div>
-            </a>
-          </div>
+           End -->
 
         </div>
       </div>
