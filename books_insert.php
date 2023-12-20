@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <?php
 require 'mysql/config.php';
+
+/*var_dump(
+    isset($_POST['bkcust1']) ? $_POST['bkcust1'] :null,
+    isset($_POST['bktel1']) ? $_POST['bktel1'] :null,
+    isset($_POST['bkcust2']) ? $_POST['bkcust2'] :null,
+    isset($_POST['bktel2']) ? $_POST['bktel2'] :null,
+    isset($_POST['bkcust3']) ? $_POST['bkcust3'] :null,
+    isset($_POST['bktel3']) ? $_POST['bktel3'] :null,
+    isset($_POST['bkcust4'])? $_POST['bkcust4'] :null,
+    isset($_POST['bktel4']) ? $_POST['bktel4'] :null ); */
+
 $bkin = $_POST['bkin'];
 $bkout = $_POST['bkout'];
-$bkcust = $_POST['bkcust'];
-$bktel = $_POST['bktel'];
+
+//
+if($modalNumber == 1) {
+    $bkcust =  $_POST['bkcust1'];
+    $bktel=$_POST['bktel1']; }
+elseif($modalNumber == 2){
+    $bkcust =  $_POST['bkcust2'];
+    $bktel=$_POST['bktel2']; }
+elseif($modalNumber == 3){ 
+    $bkcust =  $_POST['bkcust3'];
+    $bktel=$_POST['bktel3']; }
+elseif($modalNumber == 4){
+    $bkcust =  $_POST['bkcust4'];
+    $bktel=$_POST['bktel4']; };
+//
+
 if(isset($_POST['rmid'])){
     $rmid=$_POST['rmid'];
     $sql="SELECT COUNT(rmid) AS countid FROM books "

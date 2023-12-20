@@ -221,9 +221,21 @@
       </div>
     </section>
 
-    
-
-    <?php 
+    <!-- Start Modal 1 -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Booknow</button>
+    <div class="container">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+          <div class="modal-content" style="border-radius: 10px;">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Booking Room</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             
+            </div>
+            
+            <div class="modal-body">
+              
+              <?php 
               //แปลงรูปแบบวันที่ให้ตรงกับฐานข้อมูล 
               $formattedDatebkin = date("Y-m-d", strtotime($bkin));
               $formattedDatebkout = date("Y-m-d", strtotime($bkout));
@@ -234,112 +246,91 @@
               $THDatebkin = date("Y-m-d", strtotime($bkin));
               $THDatebkout = date("Y-m-d", strtotime($bkout));
               ?>
+              
+              <!-- form -->
+              <form action="books_insert.php" method="POST"> 
+                <!-- ซ่อนช่องกรอกข้อมูลไว้ ส่งค่าไปยัง ฟอร์อม books_insert.php-->
+                <label class="col-form-label">เข้าพักวันที่</label>
+                <label  class="col-form-label"><?php echo $bkin;?></label>
+                <label  class="col-form-label">ออกวันที่</label>
+                <label  class="col-form-label"><?php echo $bkout;?></label>
+                <input type="hidden"   name="bkin" 
+                value="<?php echo $formattedDatebkin;?>">
+                <input type="hidden"  name="bkout" 
+                value="<?php echo  $formattedDatebkout; ?>">
+                <!-- ซ่อนช่องกรอกข้อมูลไว้-->
 
-    <?php for ($modalNumber = 1; $modalNumber <= 4; $modalNumber++) { ?>
-    <div class="container">
-        <div class="modal fade" id="exampleModal<?php echo $modalNumber; ?>" tabindex="-1" aria-labelledby="exampleModalLabel<?php echo $modalNumber; ?>" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="border-radius: 10px;">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel<?php echo $modalNumber; ?>">Booking Room</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <!-- form -->
-                      <form action="books_insert.php" method="POST"> 
-                        <!-- ซ่อนช่องกรอกข้อมูลไว้ ส่งค่าไปยัง ฟอร์อม books_insert.php-->
-                        <label class="col-form-label">เข้า</label>
-                        <label  class="col-form-label"><?php echo $bkin;?></label>
-                        <label  class="col-form-label">ออก</label>
-                        <label  class="col-form-label"><?php echo $bkout;?></label>
-                        <input type="hidden"   name="bkin" 
-                        value="<?php echo $formattedDatebkin;?>">
-                        <input type="hidden"  name="bkout" 
-                        value="<?php echo  $formattedDatebkout; ?>">
-                        <!-- ซ่อนช่องกรอกข้อมูลไว้-->
-
-                        <div class="row justify-content-center" >
-                        <div class="mb-2 p-2">
-                          <label for="recipient-name" class="col-form-label">FulltName:</label>
-                          <!-- bkcust : ชื่อผู้พัก name="bkcust" -->
-                          <input type="text" class="form-control" id="recipient-name<?php echo $modalNumber; ?>" name="bkcust<?php echo $modalNumber; ?>" value="<?php echo $bkcust; ?>" required>
-                          </div>
-                        <div class="mb-2 p-2">
-                        <label for="recipient-name" class="col-form-label">LastNane:</label>
-                        <input type="text" class="form-control" id="recipient-name" >
-                        </div>
-                        </div>
-                        <!-- อย่าลืมเปลี่ยนข้อมูล -->
-                        <div class="row justify-content-center" >
-                        <div class="mb-2 p-2">
-                          <!-- Phone : เบอร์  name="bktel" -->
-                          <label for="recipient-name" class="col-form-label">Phone:</label>
-                          <input type="text" class="form-control" id="recipient-name<?php echo $modalNumber; ?>" 
-                                 name="bktel<?php echo $modalNumber; ?>" value="<?php echo $bkcust; ?>" required>
-                          </div>
-                        <div class="mb-2 p-2">
-                        <label for="recipient-name" class="col-form-label">Rooms:</label>
-                        <select class="form-control"  name="rmid" required>
-                        <option selected value="<?php echo $row['rmid']; ?>">เลือกห้อง</option>
-                        <?php
-                        
-                        /* ต้นแบบแสดงทุกห้อง
-                        $sql = "SELECT * FROM rooms LEFT JOIN roomtype ON rooms.rmtype = roomtype.rmtype "
-                        . "WHERE rmid NOT IN (SELECT rmid FROM books WHERE bkstatus > 0 "
-                        . "AND ((bkin >= '$bkin' AND bkin < '$bkout') OR (bkin < '$bkin' AND bkout > '$bkin')))"
-                        . $kw;
-                        $result = $conn->query($sql); */
-                      // (กำหนด ตัวแปร num_room จาก ลูป ให้ตรงกับคำสั่ง SQL  )
-                           if($modalNumber == 1) {
-                              $num_room = $num_room1;}
-                        elseif($modalNumber == 2){
-                               $num_room = $num_room2;}
-                        elseif($modalNumber == 3){ 
-                               $num_room = $num_room2;}
-                        elseif($modalNumber == 4){
-                               $num_room = $num_room2;};
-
-                        // SQL ชุดนี้แสดงเฉพาะ ห้องเดี่ยว และส่งค่าห้องเดี่ยวไปบันทึกข้อมูลลง DB
-                        $sql = "SELECT * FROM rooms LEFT JOIN roomtype ON rooms.rmtype = roomtype.rmtype "
-                                . "WHERE rmid NOT IN (SELECT rmid FROM books WHERE bkstatus > 0 "
-                                . "AND ((bkin >= '$formattedDatebkin' AND bkin < '$formattedDatebkout') OR (bkin < '$formattedDatebkin' AND bkout > '$formattedDatebkin'))) "
-                                . $num_room;
-                        $result = $conn->query($sql);
-                        $num = 1;
-                        $roomprice =0;
-                        while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-                          $roomprice ++
-                            ?>
-                              <option value="<?php echo $row['rmid']; ?>">
-                                <?php echo $num++; ?>&nbsp;
-                                <?php echo $row['rmid']; ?>&nbsp;
-                                <?php echo $row['tpname']; ?>&nbsp;
-                                <?php echo number_format($row['rmprice']*$roomprice,0);?>
-                              </option>
-                        <?php } ?>
-                      </select><br />
-                        </div>
-                        </div>
-
-                        <div class="mb-3 p-1">
-                          <label for="message-text" class="col-form-label">Message:</label>
-                          <textarea class="form-control" id="message-text"></textarea>
-                        </div>
-                    
-                    
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary" name="submit<?php echo $modalNumber; ?>">Send message</button>
-                    </div>  
-                    <!-- EnD -->
-                    </div>
-                  </form>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row justify-content-center" >
+                <div class="mb-2 p-2">
+                  <label for="recipient-name" class="col-form-label">FristName:</label>
+                  <!-- bkcust : ชื่อผู้พัก name="bkcust" -->
+                  <input type="text" class="form-control" id="recipient-name" name="bkcust" value="<?php echo $bkcust; ?>" required >
+                  </div>
+                <div class="mb-2 p-2">
+                <label for="recipient-name" class="col-form-label">LastNane:</label>
+                <input type="text" class="form-control" id="recipient-name" >
                 </div>
-            <!-- End Modal -->
-        <?php } ?>
+                </div>
+                <!-- อย่าลืมเปลี่ยนข้อมูล -->
+                <div class="row justify-content-center" >
+                <div class="mb-2 p-2">
+                  <!-- Phone : เบอร์  name="bktel" -->
+                  <label for="recipient-name" class="col-form-label">Phone:</label>
+                  <input type="text" class="form-control" id="recipient-name"  name="bktel" value="<?php echo $bktel; ?>" required >
+                  </div>
+                <div class="mb-2 p-2">
+                <label for="recipient-name" class="col-form-label">Rooms:</label>
+                <select class="form-control"  name="rmid" required>
+                <option selected value="<?php echo $row['rmid']; ?>">เลือกห้อง</option>
+                <?php
+                
+                /* ต้นแบบแสดงทุกห้อง
+                 $sql = "SELECT * FROM rooms LEFT JOIN roomtype ON rooms.rmtype = roomtype.rmtype "
+                 . "WHERE rmid NOT IN (SELECT rmid FROM books WHERE bkstatus > 0 "
+                 . "AND ((bkin >= '$bkin' AND bkin < '$bkout') OR (bkin < '$bkin' AND bkout > '$bkin')))"
+                 . $kw;
+                $result = $conn->query($sql); */
+                
+                // SQL ชุดนี้แสดงเฉพาะ ห้องเดี่ยว และส่งค่าห้องเดี่ยวไปบันทึกข้อมูลลง DB
+                $sql = "SELECT * FROM rooms LEFT JOIN roomtype ON rooms.rmtype = roomtype.rmtype "
+                        . "WHERE rmid NOT IN (SELECT rmid FROM books WHERE bkstatus > 0 "
+                        . "AND ((bkin >= '$formattedDatebkin' AND bkin < '$formattedDatebkout') OR (bkin < '$formattedDatebkin' AND bkout > '$formattedDatebkin'))) "
+                        . $num_room1;
+                $result = $conn->query($sql);
+                $num = 1;
+                $roomprice =0;
+                while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                  $roomprice ++
+                    ?>
+                      <option value="<?php echo $row['rmid']; ?>">
+                        <?php echo $num++; ?>&nbsp;
+                        <?php echo $row['rmid']; ?>&nbsp;
+                        <?php echo $row['tpname']; ?>&nbsp;
+                        <?php echo number_format($row['rmprice']*$roomprice,0);?>
+                      </option>
+                <?php } ?>
+              </select><br />
+                </div>
+                </div>
+
+                <div class="mb-3 p-1">
+                  <label for="message-text" class="col-form-label">Message:</label>
+                  <textarea class="form-control" id="message-text"></textarea>
+                </div>
+             
+            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Send message</button>
+            </div>  
+            <!-- EnD -->
+            </div>
+           </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal 1 --> 
 
     
 
@@ -358,7 +349,7 @@
               </div>
             </a>
             <center>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">BookNow</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Booknow</button>
             </center>
           </div>
 
@@ -373,7 +364,7 @@
               </div>
             </a>
             <center>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">BookNow</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Booknow</button>
             </center>
           </div>
 
@@ -388,7 +379,7 @@
               </div>
             </a>
             <center>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">BookNow</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Booknow</button>
             </center>
           </div>
 
@@ -403,7 +394,7 @@
               </div>
             </a>
             <center>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4">BookNow</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Booknow</button>
             </center>
           </div>
 

@@ -1,6 +1,8 @@
+/* font-family: 'Karla', sans-serif;
+font-family: 'Roboto Mono', monospace; */
 body {
   background: #fff;
-  font-family: "Roboto", arial, sans-serif;
+  font-family: 'Roboto Mono', monospace;
   font-weight: 200;
   font-size: 16px;
   line-height: 1.8;
@@ -9,11 +11,11 @@ body {
 
 ::-moz-selection {
   color: #fff;
-  background: #ffba5a; }
+  background: #aabccf; }
 
 ::selection {
   color: #fff;
-  background: #ffba5a; }
+  background: #aabccf; }
 
 a {
   -webkit-transition: .3s all ease;
@@ -25,13 +27,13 @@ a {
 
 h1, h2, h3, h4, h5 {
   color: #000;
-  font-family: "Playfair Display", times, serif; }
+  font-family: 'Karla', sans-serif; }
 
 .font-family-serif {
-  font-family: "Playfair Display", times, serif; }
+  font-family: 'Karla', sans-serif; }
 
 .font-family-sans-serif {
-  font-family: "Roboto", arial, sans-serif; }
+  font-family: 'Roboto Mono', monospace; }
 
 .bg-light {
   background: #f2f4fb !important; }
@@ -55,7 +57,7 @@ h1, h2, h3, h4, h5 {
     border: 2px solid #fff; }
     .btn.btn-outline-white-primary:hover {
       border: 2px solid transparent;
-      background: #ffba5a;
+      background: #aabccf;
       color: #fff; }
   .btn.uppercase {
     text-transform: uppercase;
@@ -75,7 +77,7 @@ h1, h2, h3, h4, h5 {
   height: 50px;
   border-width: 2px; }
   .form-control:active, .form-control:focus {
-    border-color: #ffba5a; }
+    border-color: #aabccf; }
 
 textarea.form-control {
   height: inherit; }
@@ -124,7 +126,7 @@ textarea.form-control {
     color: #fff;
     font-weight: bold;
     line-height: 1;
-    font-family: "Playfair Display", times, serif; }
+    font-family: 'Karla', sans-serif; }
     @media (max-width: 991.98px) {
       .site-logo a {
         font-size: 27px; } }
@@ -144,7 +146,7 @@ textarea.form-control {
   .site-navbar nav {
     text-align: left; }
     .site-navbar nav .menu {
-      font-family: "Playfair Display", times, serif; }
+      font-family: 'Roboto Mono', monospace; }
       .site-navbar nav .menu li a {
         color: #000;
         font-size: 40px;
@@ -153,7 +155,7 @@ textarea.form-control {
         .site-navbar nav .menu li a:hover:before {
           width: 100%; }
       .site-navbar nav .menu li.active a {
-        color: #ffba5a; }
+        color: #aabccf; }
         .site-navbar nav .menu li.active a:before {
           width: 100%; }
   .site-navbar .extra-info a {
@@ -161,7 +163,7 @@ textarea.form-control {
   .site-navbar .extra-info ul li a {
     color: #000; }
   .site-navbar .extra-info h3 {
-    font-family: "Roboto", arial, sans-serif;
+    font-family: 'Roboto Mono', monospace;
     text-transform: uppercase;
     font-size: 13px;
     letter-spacing: .2em;
@@ -181,7 +183,7 @@ textarea.form-control {
   width: 100%;
   position: relative; }
   .site-hero .heading {
-    font-family: "Playfair Display", times, serif;
+    font-family: 'Roboto Mono', monospace;;
     font-weight: bold; }
   .site-hero .scroll-down {
     position: absolute;
@@ -213,7 +215,7 @@ textarea.form-control {
   min-height: 700px; }
   .site-hero-inner .heading {
     font-size: 80px;
-    font-family: "Playfair Display", times, serif;
+    font-family: 'Roboto Mono', monospace;;
     color: #fff;
     line-height: 1;
     font-weight: bold; }
@@ -318,7 +320,7 @@ textarea.form-control {
 .visit-section .heading {
   font-size: 15px;
   text-transform: uppercase;
-  font-family: "Roboto", arial, sans-serif;
+  font-family: 'Roboto Mono', monospace;
   color: #b3b3b3;
   letter-spacing: .2em;
   margin-bottom: 30px; }
@@ -326,7 +328,7 @@ textarea.form-control {
 .visit-section .visit a {
   color: #000; }
   .visit-section .visit a:hover {
-    color: #ffba5a; }
+    color: #aabccf; }
 
 .visit-section .visit img {
   -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
@@ -339,7 +341,7 @@ textarea.form-control {
 
 .visit-section .reviews-star span {
   font-size: 18px;
-  color: #ffba5a; }
+  color: #aabccf; }
 
 .visit-section .reviews-count {
   color: #adb5bd;
@@ -347,7 +349,7 @@ textarea.form-control {
 
 .heading-serif, .heading, .testimonial-section .heading, .slider-section .heading, .blog-post-entry .heading {
   font-size: 60px;
-  font-family: "Playfair Display", times, serif;
+  font-family: 'Roboto Mono', monospace;;
   font-weight: 700; }
   @media (max-width: 991.98px) {
     .heading-serif, .heading, .testimonial-section .heading, .slider-section .heading, .blog-post-entry .heading {
@@ -406,7 +408,7 @@ textarea.form-control {
   .post .media-custom a {
     color: #000; }
     .post .media-custom a:hover {
-      color: #ffba5a; }
+      color: #aabccf; }
   .post .media-custom .media-body {
     padding: 10px 30px; }
   .post .media-custom h2 {
@@ -598,7 +600,7 @@ textarea.form-control {
     background: #e9ecef;
     display: inline-block; }
   .owl-carousel.js-carousel-2 .owl-dots .owl-dot.active > span {
-    background: #ffba5a; }
+    background: #aabccf; }
   .owl-carousel.js-carousel-2 .owl-dots .owl-dot:active, .owl-carousel.js-carousel-2 .owl-dots .owl-dot:focus, .owl-carousel.js-carousel-2 .owl-dots .owl-dot:hover {
     outline: none; }
 
@@ -681,7 +683,7 @@ textarea.form-control {
   .side-box .heading, .sidebar-search .heading {
     font-size: 18px;
     margin-bottom: 30px;
-    font-family: "Roboto", arial, sans-serif; }
+    font-family: 'Roboto Mono', monospace; }
 
 .post-list li {
   margin-bottom: 20px; }
@@ -717,14 +719,14 @@ textarea.form-control {
     border-color: #343a40; }
 
 .contact-section .contact-info p {
-  font-family: "Playfair Display", times, serif;
+  font-family: 'Roboto Mono', monospace;;
   font-size: 30px;
   margin-bottom: 30px; }
   .contact-section .contact-info p .d-block {
     font-size: 14px;
     letter-spacing: .2em;
     font-weight: bold;
-    font-family: "Roboto", arial, sans-serif;
+    font-family: 'Roboto Mono', monospace;
     text-transform: uppercase; }
 
 .post-categories li {
@@ -754,7 +756,7 @@ textarea.form-control {
   margin-bottom: 10px; }
 
 .custom-pagination .page-item.active .page-link {
-  background: #ffba5a;
+  background: #aabccf;
   -webkit-box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.2); }
 
@@ -866,7 +868,7 @@ textarea.form-control {
     display: block;
     border-radius: 50%;
     opacity: 1;
-    color: #ffba5a !important; }
+    color: #aabccf !important; }
     .site-block-half.site-block-video .image .play-button:hover {
       opacity: 1; }
     .site-block-half.site-block-video .image .play-button > span {
@@ -1266,6 +1268,6 @@ textarea.form-control {
         font-size: 1.2rem;
         line-height: 47px; }
       .custom-pagination ul li.active span {
-        background: #ffba5a;
+        background: #aabccf;
         color: #fff;
         border-radius: 50%; }
