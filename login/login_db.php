@@ -29,8 +29,9 @@ if($_SESSION["status"]=="admin"){ //ถ้าเป็น admin ให้กร�
    
 }  
 
-if ($_SESSION["status"]=="T"){  //ถ้าเป็น ครู ให้กระโดดไปหน้า teacher_page.php
-Header("Location: ./articles_show_1.php");
+if ($_SESSION["status"]=="U"){  //ถ้าเป็น ครู ให้กระโดดไปหน้า teacher_page.php
+    header("Location: ../admin/index.php");
+//Header("Location: ../index1.php");
 }
 if ($_SESSION["status"]=="S"){  //ถ้าเป็น นักเรียน ให้กระโดดไปหน้า student_page.php
 Header("Location: ./articles_show.php");
