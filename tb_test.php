@@ -60,29 +60,15 @@
             
                <div class="input-group"> 
                     <div class="col d-flex">
-                   <input type="search" placeholder="Search Data..."> 
-                   <img  src="images/search.png" alt="">
+                   <input type="search" placeholder="Search..."> 
                    </div>
                </div>  
            
 
-            <div class="export__file">
-              
-               <label for="export-file"  title="Export File" class="export__file-btn">  <img src="images/filecsv.png" width="30px;" alt=""></label>
-                <input type="checkbox" id="export-file">
-                
-                <div class="export__file-options">
-                    <label>Export As &nbsp; &#10140;</label>
-                    <label hidden for="export-file" id="toPDF"></label> 
-                    <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""></label>
-                    <label for="export-file" id="toCSV">CSV<img src="images/filecsv.png" alt=""></label>
-                    <label hidden for="export-file" id="toEXCEL"></label>
-                </div> 
-            </div>
         </section>
         <br>
         <center >
-        <div id="pagination" >
+        <div id="pagination"  >
         </div>
         </center>
 
