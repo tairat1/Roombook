@@ -1,4 +1,5 @@
 <?php
+//แสดงเฉพาะห้องที่มีสถานะการ + ปุ่มยกเลิกการจอง ประยุกต์ใช้กับหน้าแอดมิน และ User
 $sql="SELECT * FROM books "
         . "LEFT JOIN rooms ON books.rmid = rooms.rmid "
         . "LEFT JOIN roomtype ON rooms.rmtype = roomtype.rmtype "

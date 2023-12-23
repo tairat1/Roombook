@@ -3,29 +3,40 @@
 require 'mysql/config.php';
 
 /*var_dump(
-    isset($_POST['bkcust1']) ? $_POST['bkcust1'] :null,
-    isset($_POST['bktel1']) ? $_POST['bktel1'] :null,
-    isset($_POST['bkcust2']) ? $_POST['bkcust2'] :null,
-    isset($_POST['bktel2']) ? $_POST['bktel2'] :null,
-    isset($_POST['bkcust3']) ? $_POST['bkcust3'] :null,
-    isset($_POST['bktel3']) ? $_POST['bktel3'] :null,
-    isset($_POST['bkcust4'])? $_POST['bkcust4'] :null,
-    isset($_POST['bktel4']) ? $_POST['bktel4'] :null ); */
+    isset($_POST['bkcust1']) ? $_POST['bkcust1'] :'',
+    isset($_POST['bktel1']) ? $_POST['bktel1'] :'',
+    isset($_POST['bkcust2']) ? $_POST['bkcust2'] :'',
+    isset($_POST['bktel2']) ? $_POST['bktel2'] :'',
+    isset($_POST['bkcust3']) ? $_POST['bkcust3'] :'',
+    isset($_POST['bktel3']) ? $_POST['bktel3'] :'',
+    isset($_POST['bkcust4'])? $_POST['bkcust4'] :'',
+    isset($_POST['bktel4']) ? $_POST['bktel4'] :'' ); */
 
 $bkin = $_POST['bkin'];
 $bkout = $_POST['bkout'];
 
-//
-if($modalNumber == 1) {
+//ตรวจเช็คการรับค่าตัวแปร ถ้ามีการรับค่ามาให้ค่าเท่าตัวที่รับมา ถ้าไม่มีกดหนดใหเป็น ''
+isset($_POST['bkcust1']) ? $_POST['bkcust1'] :'';
+isset($_POST['bkcust2']) ? $_POST['bkcust2'] :'';
+isset($_POST['bkcust3']) ? $_POST['bkcust3'] :'';
+isset($_POST['bkcust4']) ? $_POST['bkcust4'] :'';
+isset($_POST['bktel1']) ? $_POST['bktel1'] :'';
+isset($_POST['bktel2']) ? $_POST['bktel2'] :'';
+isset($_POST['bktel3']) ? $_POST['bktel3'] :'';
+isset($_POST['bktel4']) ? $_POST['bktel4'] :'';
+
+// เช็คเงื่อนไข ถ้าค่าไม่ว่างหรือ มีการรับข้อมูลมูลมา 
+// ให้เก็บข้อมูล  $bkcust $bktel ให้ Sql คิวรี่ข้อมูลตามที่รับมาอีกที
+if($_POST['bkcust1'] !='') {
     $bkcust =  $_POST['bkcust1'];
     $bktel=$_POST['bktel1']; }
-elseif($modalNumber == 2){
+elseif($_POST['bkcust2'] !=''){
     $bkcust =  $_POST['bkcust2'];
     $bktel=$_POST['bktel2']; }
-elseif($modalNumber == 3){ 
+elseif($_POST['bkcust3'] !=''){ 
     $bkcust =  $_POST['bkcust3'];
     $bktel=$_POST['bktel3']; }
-elseif($modalNumber == 4){
+elseif($_POST['bkcust4'] !=''){
     $bkcust =  $_POST['bkcust4'];
     $bktel=$_POST['bktel4']; };
 //
@@ -69,6 +80,6 @@ if(isset($_POST['rmid'])){
                 alert("การดำเนินการผิดพลาด");
             }
             window.location.replace(vurl);
-        </script>
+        </script> 
     </body>
 </html>

@@ -295,9 +295,9 @@
                         elseif($modalNumber == 2){
                                $num_room = $num_room2;}
                         elseif($modalNumber == 3){ 
-                               $num_room = $num_room2;}
+                               $num_room = $num_room3;}
                         elseif($modalNumber == 4){
-                               $num_room = $num_room2;};
+                               $num_room = $num_room4;};
 
                         // SQL ชุดนี้แสดงเฉพาะ ห้องเดี่ยว และส่งค่าห้องเดี่ยวไปบันทึกข้อมูลลง DB
                         $sql = "SELECT * FROM rooms LEFT JOIN roomtype ON rooms.rmtype = roomtype.rmtype "
